@@ -1,0 +1,26 @@
+dig_T# for temperature
+dig_P# for pressure
+dig_H# for humidity
+
+SDO is connected to 3,3v so slave address is  page 31
+01110111 (0x77)
+
+CSB is connected to 3,3v so I2C protcol is selected page 31
+
+SDI should be pulled UP
+
+6.2.1 I²C write Writing is done by sending the slave address in
+ write mode (RW = ‘0’), resulting in slave address
+ 111011X0 (‘X’ is determined by state of SDO pin. 
+Then the master sends pairs of register addresses and register data. 
+The transaction is ended by a stop condition. This is depicted in Figure 9.  
+ 
+
+6.2.2 I²C read To be able to read registers, first the register address 
+must be sent in write mode (slave address 111011X0). Then either a stop
+ or a repeated start condition must be generated. After this the slave
+ is addressed in read mode (RW = ‘1’) at address 111011X1, after which
+ the slave sends out data from auto-incremented register addresses until
+ a NOACKM and stop condition occurs. This is depicted in Figure 10, where
+ register 0xF6 and 0xF7 are read.
+
